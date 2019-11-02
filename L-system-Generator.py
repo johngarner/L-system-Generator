@@ -4,16 +4,17 @@ https://runestone.academy/runestone/books/published/thinkcspy/Strings/Turtlesand
 import turtle
 
 
+# This creates the L-system itself
 def createLSystem(numIter, axiom, ruleChoice):
     startString = axiom
     endString = ""
     for i in range(numIter):
         endString = processString(startString, ruleChoice)
         startString = endString
-
     return endString
 
 
+# This processes strings using the ruleset chosen
 def processString(oldStr, ruleChoice):
     newStr = ""
     for ch in oldStr:
@@ -27,66 +28,66 @@ def processString(oldStr, ruleChoice):
             newStr = newStr + applyRules4(ch)
         elif ruleChoice == "5":
             newStr = newStr + applyRules5(ch)
-
     return newStr
 
 
+# This applies and contains the first ruleset
 def applyRules1(ch):
     newStr = ""
     if ch == 'F':
-        newStr = 'F-F++F-F'   # Rule 1
+        newStr = 'F-F++F-F'  # Rule 1/1
     else:
-        newStr = ch    # no rules apply so keep the character
-
+        newStr = ch  # if the rule does not apply, this keeps the character
     return newStr
 
 
+# This applies and contains the second ruleset
 def applyRules2(ch):
     newStr = ""
     if ch == 'F':
-        newStr = 'F-F++F+F-F-F'   # Rule 1
+        newStr = 'F-F++F+F-F-F'  # Rule 1/1
     else:
-        newStr = ch    # no rules apply so keep the character
-
+        newStr = ch  # if the rule does not apply, this keeps the character
     return newStr
 
 
+# This applies and contains the third ruleset
 def applyRules3(ch):
     newStr = ""
     if ch == 'F':
-        newStr = 'F-G+F+G-F'   # Rule 1
+        newStr = 'F-G+F+G-F'  # Rule 1/2
     elif ch == 'G':
-        newStr = 'GG'   # Rule 2
+        newStr = 'GG'  # Rule 2/2
     else:
-        newStr = ch    # no rules apply so keep the character
-
+        newStr = ch  # if neither rule applies, this keeps the character
     return newStr
 
 
+# This applies and contains the fourth ruleset
 def applyRules4(ch):
     newStr = ""
     if ch == 'F':
-        newStr = 'F+F-F-F-G+F+F+F-F'  # Rule 1
+        newStr = 'F+F-F-F-G+F+F+F-F'  # Rule 1/2
     elif ch == 'G':
-        newStr = 'GGG'   # Rule 2
+        newStr = 'GGG'  # Rule 2/2
     else:
-        newStr = ch  # no rules apply so keep the character
-
+        newStr = ch  # if neither rule applies, this keeps the character
     return newStr
 
 
+# This applies and contains the fifth ruleset
 def applyRules5(ch):
     newStr = ""
     if ch == 'F':
-        newStr = 'F=F-F++F-F'   # Rule 1
+        newStr = 'F=F-F++F-F'  # Rule 1/2
     elif ch == 'X':
-        newStr = 'FF'   # Rule 2
+        newStr = 'FF'  # Rule 2/2
     else:
-        newStr = ch    # no rules apply so keep the character
-
+        newStr = ch  # if neither rule applies, this keeps the character
     return newStr
 
 
+# This instructs the turtle to draw the L-system fractal
 def drawLSystem(aTurtle, instructions, angle, distance):
     for cmd in instructions:
         if cmd == 'F':
@@ -101,6 +102,7 @@ def drawLSystem(aTurtle, instructions, angle, distance):
             aTurtle.left(angle)
 
 
+# This is the main, it initialises and runs the generator and prompts the user for inputs
 def main():
     startIt = 0
     ruleChoice = "0"
@@ -134,16 +136,16 @@ def main():
         startAng = 60
         startAx = "F++F++F"
 
-    inst = createLSystem(startIt, startAx, ruleChoice)   # create the string
+    inst = createLSystem(startIt, startAx, ruleChoice)  # this creates the string
     print(inst)
-    t = turtle.Turtle()            # create the turtle
+    t = turtle.Turtle()  # this creates the turtle
     wn = turtle.Screen()
 
     t.up()
     t.back(200)
     t.down()
     t.speed(0)
-    drawLSystem(t, inst, startAng, 5)   # draw the picture
+    drawLSystem(t, inst, startAng, 5)  # this draws the picture
     wn.exitonclick()
 
 
