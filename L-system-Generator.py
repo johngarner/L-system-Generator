@@ -144,6 +144,7 @@ def main():
     t.up()
     t.back(200)
     t.down()
+    t.hideturtle()
     t.speed(0)
     drawLSystem(t, inst, startAng, 5)  # this draws the picture
     wn.exitonclick()
